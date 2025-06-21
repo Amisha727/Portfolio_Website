@@ -191,14 +191,87 @@
         padding: 6rem 2rem 4rem;
       }
 
-      #skills .icons {
-        text-align: center;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
+      .skill-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  color: white;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skill-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  flex: 1 1 calc(45% - 2rem); /* ~2 cards per row with gap */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.skill-card h3 {
+  color: #00ffe7;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.skill-card ul {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: #eee;
+}
+/*
+.skill-card ul li::before {
+  content: '🔧';
+  color: #ff66cc;
+  margin-right: 0.5rem;
+}*/
+
+.skill-card:hover {
+  transform: scale(1.03);
+  border-color: #00ffe7;
+  box-shadow: 0 0 15px rgba(0, 255, 231, 0.2);
+}
+
+.skill-card.active {
+  transform: scale(1.05);
+  border-color: #00ffe7;
+  box-shadow: 0 0 25px rgba(0, 255, 231, 0.3);
+}
+@media (max-width: 768px) {
+  .skill-card {
+    flex: 1 1 100%;
+  }
+}
+
+.skill-card ul li {
+  font-size: 1rem;
+  margin: 0.4rem 0;
+  color: #eee;
+  display: block;
+  text-align:justify; /* Center align text for all items */
+  width: 100%;
+}
+/*
+.skill-card ul li:nth-child(odd) {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.skill-card ul li:nth-child(even) {
+  text-align: right;
+  padding-right: 1rem;
+}*/
+
 
       #skills .icons img {
         width: 40px;
@@ -312,88 +385,119 @@
     </section>
 
     <section id="parallax2" class="parallax-section">
-      <section id="about">
-        <h2 style="text-align: center; margin-bottom: 2rem">👩‍💻 About Me</h2>
-        <p
-          style="
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #ccc;
-          "
-        >
-          I am a final-year Computer Science student with deep expertise in
-          responsive front-end development. I specialize in creating immersive
-          UI/UX experiences with strong aesthetics and attention to detail.
-        </p>
-      </section>
+      <section id="about" style="padding: 6rem 2rem; color: white;">
+  <h2 style="text-align: center; margin-bottom: 0.5rem;">👩‍💻 Get To Know</h2>
+  <h3 style="text-align: center; margin-bottom: 3rem; font-size: 2rem;">About Me</h3>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;">
+    
+    <!-- Image -->
+    <div style="flex: 1; min-width: 280px; text-align: center;">
+      <img src="./assets/amisha-profile.png" alt="Amisha" style="max-width: 100%; border-radius: 20px; box-shadow: 0 0 20px rgba(0,255,231,0.4);" />
+    </div>
+
+    <!-- Text Content -->
+    <div style="flex: 2; min-width: 300px;">
+      <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; color: #ccc;">
+        Hello! I'm <strong style="color:#00ffe7;">Kumari Amisha</strong>, a passionate Computer Science & Engineering student with a strong foundation in building scalable full-stack applications, backend infrastructure, and intuitive UI/UX. I’ve worked with tech like React, Hono, Prisma, Cloudflare Workers and love solving real-world problems through innovation.<br><br>
+        I thrive in collaborative environments and enjoy tackling challenges that push the boundaries of technology. My goal is to create impactful solutions that enhance user experiences and drive efficiency.
+        When I'm not coding, you can find me exploring new tech trends, contributing to open-source projects, or engaging in hackathons. Let's connect and build something amazing together!
+      </p>
+
+      <!-- Cards for Education & Skills -->
+      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+        <!-- Education Card -->
+        <div style="flex: 1; min-width: 220px; background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,255,231,0.1); backdrop-filter: blur(6px);">
+          <h4 style="margin-bottom: 1rem; color: #00ffe7;"><i class="fas fa-user-graduate"></i> Education</h4>
+          <p style="line-height: 1.6;">
+            B.Tech in Computer Science<br />
+            SRM Institute of Science and Technology<br />
+            Expected: May 2026<br />
+            CGPA: 9.37/10
+          </p>
+        </div>
+
+        <!-- Skills Card -->
+        <div style="flex: 1; min-width: 220px; background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,255,231,0.1); backdrop-filter: blur(6px);">
+          <h4 style="margin-bottom: 1rem; color: #00ffe7;"><i class="fas fa-code"></i> Skills</h4>
+          <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+            <li>Full-Stack Development</li>
+            <li>DevOps & System Design</li>
+            <li>OOP & DSA</li>
+            <li>Cloud Platforms</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Let's Talk Button -->
+      <button class="btn" style="margin-top: 2rem;" onclick="scrollToSection('connect')">Let's Talk!</button>
+    </div>
+  </div>
+</section>
+
+
     </section>
 
     <section id="parallax3" class="parallax-section">
-      <section id="skills">
-        <h2 style="text-align: center; margin-bottom: 2rem">
-          💼 Skills & Tools
-        </h2>
-        <div class="icons">
-          <img
-            src="https://cdn.simpleicons.org/bootstrap/7952B3"
-            alt="bootstrap"
-          />
-          <img
-            src="https://cdn.simpleicons.org/codeigniter/EF4223"
-            alt="codeigniter"
-          />
-          <img
-            src="https://cdn.simpleicons.org/cplusplus/00599C"
-            alt="cplusplus"
-          />
-          <img src="https://cdn.simpleicons.org/css3/1572B6" alt="css3" />
-          <img src="https://cdn.simpleicons.org/docker/2496ED" alt="docker" />
-          <img src="https://cdn.simpleicons.org/express/000000" alt="express" />
-          <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="figma" />
-          <img
-            src="https://cdn.simpleicons.org/firebase/FFCA28"
-            alt="firebase"
-          />
-          <img src="https://cdn.simpleicons.org/git/F05032" alt="git" />
-          <img src="https://cdn.simpleicons.org/html5/E34F26" alt="html5" />
-          <img
-            src="https://cdn.simpleicons.org/javascript/F7DF1E"
-            alt="javascript"
-          />
-          <img
-            src="https://cdn.simpleicons.org/apachekafka/231F20"
-            alt="kafka"
-          />
-          <img src="https://cdn.simpleicons.org/mongodb/47A248" alt="mongodb" />
-          <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="mysql" />
-          <img
-            src="https://cdn.simpleicons.org/nextdotjs/000000"
-            alt="nextjs"
-          />
-          <img
-            src="https://cdn.simpleicons.org/nodedotjs/339933"
-            alt="nodejs"
-          />
-          <img src="https://cdn.simpleicons.org/pandas/150458" alt="pandas" />
-          <img src="https://cdn.simpleicons.org/postman/FF6C37" alt="postman" />
-          <img src="https://cdn.simpleicons.org/python/3776AB" alt="python" />
-          <img src="https://cdn.simpleicons.org/pytorch/EE4C2C" alt="pytorch" />
-          <img src="https://cdn.simpleicons.org/react/61DAFB" alt="react" />
-          <img
-            src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
-            alt="tailwind"
-          />
-          <img
-            src="https://cdn.simpleicons.org/tensorflow/FF6F00"
-            alt="tensorflow"
-          />
-          <img
-            src="https://cdn.simpleicons.org/typescript/3178C6"
-            alt="typescript"
-          />
-        </div>
-      </section>
+      <section id="skills" style="padding: 6rem 2rem;">
+  <h2 style="text-align: center; margin-bottom: 3rem; color: white;">💼 What Skills I Have</h2>
+
+  <div class="skill-cards-container">
+    <!-- Card 1 -->
+    <div class="skill-card" onclick="activateCard(this)">
+      <h3>Technical Skills</h3>
+      <ul>
+        <ul>Web Development</ul>
+        <ul>Object-Oriented Programming</ul>
+        <ul>Data Structures & Algorithms</ul>
+        <ul>Development & Operations</ul>
+        <ul>Problem Solving</ul>
+        <ul>System Design</ul>
+      </ul>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="skill-card" onclick="activateCard(this)">
+      <h3>Web & Database</h3>
+      <ul>
+        <ul>HTML / CSS</ul>
+        <ul>REST API</ul>
+        <ul>SQL & NoSQL</ul>
+        <ul>GraphQL</ul>              <ul>Flask</ul>
+        <ul>Bootstrap Node.js</ul>
+        <ul>Express.js React</ul>
+      </ul>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="skill-card" onclick="activateCard(this)">
+      <h3>Programming Languages</h3>
+      <ul>
+        <ul>C / C++ </ul>
+        <ul>C#</ul>
+        <ul>Java</ul>
+        <ul>Python</ul>
+        <ul>JavaScript</ul>
+        <ul>TypeScript</ul>    
+      </ul>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="skill-card" onclick="activateCard(this)">
+      <h3>DevOps & System</h3>
+      <ul>
+        <ul>CI/CD Pipelines</ul>
+        <ul>Cloudflare Workers</ul>
+        <ul>Docker</ul>
+        <ul>PostgreSQL</ul>
+        <ul>Prisma</ul>
+        <ul>Hono</ul>
+      </ul>Git, GitHub</ul>
+      </ul>
+    </div>
+  </div>
+</section>
+
 
     <section id="projects">
   <h2 style="text-align: center; margin-bottom: 2rem">
