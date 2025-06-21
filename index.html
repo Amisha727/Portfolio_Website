@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kumari Amisha | Portfolio</title>
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
+      type="image/png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Add this in <head> -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha512-1zcPb+l3hF91QsUu+1K6fyCB+nSxYx3WB3h6xDLkG7x2S1+6HsmDHxyIvznYw69YI1et9lH1U97bwq+qZFOo4w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Outfit", sans-serif;
+      }
+
+      html,
+      body {
+        scroll-behavior: smooth;
+      }
+
+      .parallax-section {
+        min-height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+      }
+
+      #parallax1 {
+        background-image: url("./assets/background1.png");
+        position: relative; /* required for ::before to behave correctly */
+        background-size: cover; /* better for responsive full cover */
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed; 
+        z-index: 0;
+        overflow: hidden;
+      }
+      
+      /* Transparent blurred layer only over the background */
+      #parallax1::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        filter: blur(5px) brightness(0.7); /* blur + darken */
+        z-index: 0;
+        transform: scale(1.05); /* prevent edge clipping */
+      }
+      .overlay {
+        position: relative;
+        z-index: 1;
+        padding: 4rem 2rem;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      
+
+      #parallax2 {
+        background-image: url("./assets/background2.png");
+      }
+
+      #parallax3 {
+        background-image: url("./assets/background3.png");
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        transition: background 0.5s ease;
+      }
+
+      header.scrolled {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+      }
+
+      header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #00ffe7;
+      }
+
+      nav a {
+        margin-left: 2rem;
+        font-size: 1.2rem;
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #00ffe7;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+      }
+
+      .hero h2 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        font-family: "Fira Code", monospace;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid white;
+        width: 0;
+        animation:
+          typing 4s steps(40, end) forwards,
+          blink 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #fff;
+        max-width: 600px;
+      }
+
+      .btn {
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        background: #00ffe7;
+        color: #000;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+      }
+
+      section {
+        padding: 6rem 2rem 4rem;
+      }
+
+      #skills .icons {
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      #skills .icons img {
+        width: 40px;
+        height: 40px;
+        filter: drop-shadow(0 0 4px #00ffe7);
+      }
+
+      .projects {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .flip-card {
+        background-color: transparent;
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 10px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        color: white;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+
+      .flip-card-front {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      .flip-card-back {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        transform: rotateY(180deg);
+      }
+
+      .connect-icons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
+
+      .connect-icons a {
+        color: #00ffe7;
+        transition: transform 0.3s;
+      }
+
+      .connect-icons a:hover {
+        transform: scale(1.2);
+      }
+
+      /*footer {
+        text-align: center;
+        padding: 2rem;
+        background-color: #000;
+        color: #ccc;
+      }*/
+    </style>
+  </head>
+
+  <body>
+    <header id="navbar">
+      <h1>Amisha</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#connect">Connect</a>
+      </nav>
+    </header>
+
+    <section id="parallax1" class="parallax-section hero">
+      <div class="overlay">
+      <h2>Hi, I'm Kumari Amisha 👋</h2>
+      <p>
+        Crafting rich, beautiful & branded websites with code and creativity.
+      </p>
+      <button class="btn" onclick="scrollToSection('projects')">
+        See My Work
+      </button>
+        </div>
+    </section>
+
+    <section id="parallax2" class="parallax-section">
+      <section id="about">
+        <h2 style="text-align: center; margin-bottom: 2rem">👩‍💻 About Me</h2>
+        <p
+          style="
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #ccc;
+          "
+        >
+          I am a final-year Computer Science student with deep expertise in
+          responsive front-end development. I specialize in creating immersive
+          UI/UX experiences with strong aesthetics and attention to detail.
+        </p>
+      </section>
+    </section>
+
+    <section id="parallax3" class="parallax-section">
+      <section id="skills">
+        <h2 style="text-align: center; margin-bottom: 2rem">
+          💼 Skills & Tools
+        </h2>
+        <div class="icons">
+          <img
+            src="https://cdn.simpleicons.org/bootstrap/7952B3"
+            alt="bootstrap"
+          />
+          <img
+            src="https://cdn.simpleicons.org/codeigniter/EF4223"
+            alt="codeigniter"
+          />
+          <img
+            src="https://cdn.simpleicons.org/cplusplus/00599C"
+            alt="cplusplus"
+          />
+          <img src="https://cdn.simpleicons.org/css3/1572B6" alt="css3" />
+          <img src="https://cdn.simpleicons.org/docker/2496ED" alt="docker" />
+          <img src="https://cdn.simpleicons.org/express/000000" alt="express" />
+          <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="figma" />
+          <img
+            src="https://cdn.simpleicons.org/firebase/FFCA28"
+            alt="firebase"
+          />
+          <img src="https://cdn.simpleicons.org/git/F05032" alt="git" />
+          <img src="https://cdn.simpleicons.org/html5/E34F26" alt="html5" />
+          <img
+            src="https://cdn.simpleicons.org/javascript/F7DF1E"
+            alt="javascript"
+          />
+          <img
+            src="https://cdn.simpleicons.org/apachekafka/231F20"
+            alt="kafka"
+          />
+          <img src="https://cdn.simpleicons.org/mongodb/47A248" alt="mongodb" />
+          <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="mysql" />
+          <img
+            src="https://cdn.simpleicons.org/nextdotjs/000000"
+            alt="nextjs"
+          />
+          <img
+            src="https://cdn.simpleicons.org/nodedotjs/339933"
+            alt="nodejs"
+          />
+          <img src="https://cdn.simpleicons.org/pandas/150458" alt="pandas" />
+          <img src="https://cdn.simpleicons.org/postman/FF6C37" alt="postman" />
+          <img src="https://cdn.simpleicons.org/python/3776AB" alt="python" />
+          <img src="https://cdn.simpleicons.org/pytorch/EE4C2C" alt="pytorch" />
+          <img src="https://cdn.simpleicons.org/react/61DAFB" alt="react" />
+          <img
+            src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
+            alt="tailwind"
+          />
+          <img
+            src="https://cdn.simpleicons.org/tensorflow/FF6F00"
+            alt="tensorflow"
+          />
+          <img
+            src="https://cdn.simpleicons.org/typescript/3178C6"
+            alt="typescript"
+          />
+        </div>
+      </section>
+
+    <section id="projects">
+  <h2 style="text-align: center; margin-bottom: 2rem">
+    ✨ Featured Projects
+  </h2>
+
+  <div class="projects">
+    <!-- 1 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h3>React Dashboard (SIH)</h3>
+          <p>Power Analytics UI</p>
+        </div>
+        <div class="flip-card-back">
+          <p>
+            A dynamic React dashboard showing energy data, peak demand, and power supply trends for the NCT Govt of India. Built during Smart India Hackathon.
+          </p>
+          <a href="https://github.com/Amisha727/React-Dashboard" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h3>Blogging Platform</h3>
+          <p>Medium-style Blog App</p>
+        </div>
+        <div class="flip-card-back">
+          <p>
+            A full-stack blogging site with user auth, JWT, markdown editor, and seamless UI. Built with Hono, Prisma, PostgreSQL & Cloudflare Workers.
+          </p>
+          <a href="https://github.com/Amisha727/Blogging-site" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h3>Myntra Hackeramp</h3>
+          <p>WeForShe Hackathon</p>
+        </div>
+        <div class="flip-card-back">
+          <p>
+            Developed a fully responsive e-commerce website with rich UI and backend integration for dynamic data handling. Designed for a real-world retail hackathon challenge.
+          </p>
+          <a href="https://github.com/Amisha727/Myntra-Hackeramp-WeForShe" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h3>Autocoder</h3>
+          <p>Story Matrix 4.0</p>
+        </div>
+        <div class="flip-card-back">
+          <p>
+            A creative storytelling web app with an immersive UI/UX interface that dynamically generates engaging code-based stories using interactive visuals.
+          </p>
+          <a href="https://github.com/Amisha727/Autocoder-Story-Matrix-4" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h3>Paytm Clone</h3>
+          <p>Frontend + UI</p>
+        </div>
+        <div class="flip-card-back">
+          <p>
+            A complete frontend and backend website built from scratch for seamless transactions. Designed and developed with a custom layout, secure backend, and responsive design.
+          </p>
+          <a href="https://github.com/Amisha727/PAYTM" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="connect">
+  <h2 style="text-align: center">🌐 Connect With Me</h2>
+  <div class="connect-icons">
+    <!-- GitHub -->
+    <a href="https://github.com/Amisha727" target="_blank" title="GitHub">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+        alt="GitHub"
+        style="width: 32px; height: 32px; filter: invert(1);"
+      />
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/kumari-amisha-526205250/" target="_blank" title="LinkedIn">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+        alt="LinkedIn"
+        style="width: 32px; height: 32px; filter: invert(1);"
+      />
+    </a>
+
+    <!-- LeetCode -->
+    <a href="https://leetcode.com/amishajha29" target="_blank" title="LeetCode">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg"
+        alt="LeetCode"
+        style="width: 32px; height: 32px; filter: invert(1);"
+      />
+    </a>
+
+    <!-- Gmail -->
+    <a href="amishajha1208@gmail.com" title="Gmail">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg"
+        alt="Gmail"
+        style="width: 32px; height: 32px; filter: invert(1);"
+      />
+    </a>
+
+    <!-- Resume -->
+    <a href="https://drive.google.com/file/d/16fGBR-F4UQ5FZq3f3NWdTlxoIWYi5Xc6/view?usp=drive_link" target="_blank" title="Resume">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/readthedocs.svg"
+        alt="Resume"
+        style="width: 32px; height: 32px; filter: invert(1);"
+      />
+    </a>
+  </div>
+
+  <div style="margin-top: 4rem; color: #ccc; text-align: center; font-size: 0.9rem;">
+    &copy; 2025 Kumari Amisha. All rights reserved.
+  </div>
+</section>
+
+    </section>
+
+    <script>
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 10) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>
